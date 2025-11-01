@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggle } from "../features/todosSlice";
+import { destroy, toggle } from "../features/todosSlice";
 
 function TodoList() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function TodoList() {
               onChange={() => dispatch(toggle({ id: item.id }))}
             />
             <label>{item.title}</label>
-            <button className="destroy"></button>
+            <button className="destroy" onClick={()=>dispatch(destroy(item.id))}></button>
           </div>
         </li>
       ))}
