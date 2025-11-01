@@ -6,6 +6,7 @@ const initialState = {
     { id: 2, title: "Learn Ethical Hacking", completed: false },
     { id: 3, title: "Do Full Body Exercise", completed: false },
   ],
+  activeFilter: "all",
 };
 
 export const todosSlice = createSlice({
@@ -27,8 +28,23 @@ export const todosSlice = createSlice({
       const item = state.items.find((item) => item.id === id);
       item.completed = !item.completed;
     },
+
+    changeActiveFilter: (state, action) => {
+      state.activeFilter = action.payload;
+    },
+
+    clearCompleted: (state) => {
+      const filtered = state.items.filter((item) => item.completed === false);
+      state.items = filtered;
+    },
   },
 });
 
-export const { addNewItem, toggle, destroy } = todosSlice.actions;
+export const {
+  addNewItem,
+  toggle,
+  destroy,
+  changeActiveFilter,
+  clearCompleted,
+} = todosSlice.actions;
 export default todosSlice.reducer;
