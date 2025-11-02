@@ -9,6 +9,7 @@ function Form() {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
+    if (!title) return;
     e.preventDefault();
     dispatch(addNewItem({ id: nanoid(), title, completed: false }));
     setTitle("");
