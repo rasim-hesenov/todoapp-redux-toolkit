@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewItem } from "../features/todosSlice";
-import { nanoid } from "@reduxjs/toolkit";
+
 
 function Form() {
   const [title, setTitle] = useState("");
@@ -11,7 +11,7 @@ function Form() {
   const handleSubmit = (e) => {
     if (!title) return;
     e.preventDefault();
-    dispatch(addNewItem({ id: nanoid(), title, completed: false }));
+    dispatch(addNewItem({title}));
     setTitle("");
   };
 

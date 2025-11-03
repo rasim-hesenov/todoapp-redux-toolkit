@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [
@@ -13,8 +13,19 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
-    addNewItem: (state, action) => {
+    addNewItem:{
+        reducer: (state, action) => {
       state.items.push(action.payload);
+    },
+    prepare: ({title}) =>{
+      return  {
+        payload:{
+          id:nanoid(),
+          completed:false,
+          title,
+        }
+      }
+    }
     },
 
     destroy: (state, action) => {
